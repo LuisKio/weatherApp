@@ -1,0 +1,276 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+/*=============== BACKGROUND HOME ===============*/
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./../img/backgroundHome.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(2px);
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .4)
+}
+
+/*=============== CARD HOME ===============*/
+.card-home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-home .card {
+  position: relative;
+  width: 90%;
+  height: 190px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: .5s;
+}
+
+.card-home .card__active {
+  height: 230px;
+}
+
+.card-home .card__city {
+  height: 280px;
+  width: 70%;
+}
+
+.card-home .card__weather {
+  height: 520px;
+  width: 70%;
+}
+
+
+.card-home .lines {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.card-home .lines::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(transparent, var(--first-color), var(--first-color), var(--first-color), transparent);
+  animation: animateCard 4s linear infinite;
+}
+
+@keyframes animateCard {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.card-home .lines::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background-color: var(--card-color);
+  border-radius: 10px;
+}
+
+.card-home .elements {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem .3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-home .content-home h1 {
+  color: var(--first-color);
+  font-size: var(--h1-font-size);
+}
+
+.card-home .content-home p {
+  font-size: var(--normal-font-size);
+  font-weight: 500;
+  margin-top: var(--mb-0-5);
+}
+
+.card-home .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.card-home .buttons button {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: var(--normal-font-size);
+  padding: .6rem .7rem;
+  color: #F2F2F2;
+  font-weight: 600;
+  background-color: var(--button-color);
+  opacity: .9;
+}
+
+.card-home .buttons .single__button {
+  width: 40%;
+}
+
+.card-home .buttons button:nth-child(2) {
+  background-color: var(--first-color);
+}
+
+.card-home .buttons button:hover {
+  opacity: 1;
+}
+
+
+
+/*=============== INPUTBOX ===============*/
+.inputBox {
+  position: relative;
+  width: 200px;
+  text-align: start;
+}
+
+.inputBox input {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  font-size: 1rem;
+  letter-spacing: .05rem;
+  color: var(--button-color);
+}
+
+.inputBox span {
+  color: var(--label-color);
+  font-weight: 500;
+  position: absolute;
+  left: 0;
+  text-transform: uppercase;
+  pointer-events: none;
+  padding: 1px 0 5px;
+  letter-spacing: .05rem;
+  transition: .5s;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+  color: var(--first-color);
+  font-size: var(--smaller-font-size);
+  transform: translateY(-18px);
+}
+
+.inputBox i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--text-color-light);
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+}
+
+.inputBox i::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #E84959, #ff6000, #00bf99, #1c0ce4, #E84959);
+  animation: outlineAnimation 2s linear infinite;
+}
+
+.inputBox input:valid~i::before,
+.inputBox input:focus~i::before {
+  left: 0;
+}
+
+@keyframes outlineAnimation {
+  0% {
+    background-position-x: 0;
+  }
+
+  100% {
+    background-position-x: 200px;
+  }
+}
+
+
+/*=============== MessageError ===============*/
+.txt__error {
+  color: var(--txt-error);
+}
+
+/*=============== WEATHER SEARCH ===============*/
+.searchBox{
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/*=============== BREAKPOINTS ===============*/
+
+@media screen and (min-width: 767px) {
+
+  /*=============== CARD HOME ===============*/
+  .card-home .card {
+    width: 45%;
+  }
+
+  .card-home .buttons .single__button {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  /*=============== CARD HOME ===============*/
+  .card-home .card {
+
+    width: 20%;
+  }
+}
